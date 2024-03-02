@@ -37,8 +37,8 @@ public:
 class Solution {
 public:
     Node* connect(Node* root) {
-        if (root == nullptr)
-            return nullptr;
+        if (root == NULL)
+            return NULL;
         queue<Node*> q;
         q.push(root);
         while (!q.empty()) {
@@ -49,7 +49,7 @@ public:
                 if (i < (n - 1)) {
                     temp->next = q.front();
                 } else {
-                    temp->next = nullptr;
+                    temp->next = NULL;
                 }
                 if (temp->left)
                     q.push(temp->left);
