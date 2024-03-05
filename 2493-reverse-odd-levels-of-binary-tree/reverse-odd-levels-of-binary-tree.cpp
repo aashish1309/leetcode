@@ -10,35 +10,23 @@
  * };
  */
 class Solution {
+    void sol(TreeNode* left, TreeNode* right, int lvl) {
+        if(left == NULL || right == NULL)
+            return;
+        
+        if(lvl % 2 == 0) {
+            int tempVal = left->val;
+            left->val = right->val;
+            right->val = tempVal;
+        }
+
+        sol(left->left, right->right, lvl+1);
+        sol(left->right, right->left, lvl+1);
+    }
 public:
     TreeNode* reverseOddLevels(TreeNode* root) {
-        vector<vector<int>>odd;
-        queue<TreeNode*>q;
-        vector<int>values;
-        q.push(root);
-        int level  = 0;
-        while(!q.empty()){
-            int size = q.size();
-            vector<int>temp;
-            for(int i=0;i<size;i++){
-                auto node = q.front();
-                q.pop();
-                if(level%2){
-                    node->val = values[size-i-1];
-                }
-                if(node->left){
-                    q.push(node->left);
-                    temp.push_back(node->left->val);
-                }
-                if(node->right){
-                    q.push(node->right);
-                    temp.push_back(node->right->val);
-                }
-            }     
-            values = temp;
-            level++;     
-        }
+        sol(root->left, root->right, 0);
+        
         return root;
-
     }
 };
