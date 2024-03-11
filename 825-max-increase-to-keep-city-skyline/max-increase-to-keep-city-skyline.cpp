@@ -14,8 +14,7 @@ public:
         }
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                int x=min(row[i],col[j]);
-                sum+=x-grid[i][j];
+                sum+=min(row[i],col[j])-grid[i][j];
             }
         }
         return sum;
